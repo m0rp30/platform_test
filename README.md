@@ -1,5 +1,5 @@
 #TODO
 
  * Nemici
- * Monete
+ * ~~Monete~~
  * Livelli
