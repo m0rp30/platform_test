@@ -1,17 +1,18 @@
 extends KinematicBody2D
 
+class_name Player
+
 const FLOOR_NORMAL : = Vector2(0, -1)
 
-var gravity : = Global.gravity
 var speed : = 100.0
 var velocity : = Vector2()
 var target_speed : = 0.0
-var jump_speed : = Global.jump_speed
 var is_jumping : = false
 
 onready var animated_sprite : = $AnimatedSprite as AnimatedSprite
+onready var rayCast_right : = $RayCastGroup/RayCastRight as RayCast2D
 
-func _process(delta: float) -> void:
+func _process(_delta) -> void:
 	if velocity.x < 0:
 		animated_sprite.flip_h = true
 	elif velocity.x > 0:
@@ -28,7 +29,7 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	get_inputs()
 	
-	velocity.y = velocity.y + gravity
+	velocity.y += Global.gravity * delta
 	velocity.x = lerp(velocity.x, target_speed, .1)
 	if abs(velocity.x) < 1:
 		velocity.x = 0
@@ -40,8 +41,10 @@ func _physics_process(delta: float) -> void:
 		is_jumping = false
 	
 func get_inputs() -> void:
-	if Input.is_action_pressed("ui_up") && is_on_floor():
-		velocity.y = jump_speed
+	#if Input.is_action_pressed("ui_up") && is_on_floor():
+	if Input.is_action_just_pressed("ui_up") && is_on_floor():
+		$sfx_jump.play()
+		velocity.y = Global.jump_speed
 		is_jumping = true
 	
 	target_speed = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")) * speed

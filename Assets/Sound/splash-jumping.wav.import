@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/splash-jumping.wav-1281e501661f3f56af7f6135f4b9b059.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/splash-jumping.wav"
+dest_files=[ "res://.import/splash-jumping.wav-1281e501661f3f56af7f6135f4b9b059.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

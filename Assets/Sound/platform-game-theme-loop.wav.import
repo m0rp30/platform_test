@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/platform-game-theme-loop.wav-7fd81fbdaaa2ff8868bbb606ec7ebf02.sample"
+
+[deps]
+
+source_file="res://Assets/Sound/platform-game-theme-loop.wav"
+dest_files=[ "res://.import/platform-game-theme-loop.wav-7fd81fbdaaa2ff8868bbb606ec7ebf02.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=82 format=2]
+[gd_scene load_steps=87 format=2]
 
 [ext_resource path="res://Assets/AutoTile.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Ninja Frog/run/Run (32x32)_7.png" type="Texture" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://Pinapple/Pineapple.tscn" type="PackedScene" id=26]
 [ext_resource path="res://Assets/Background/cave.png" type="Texture" id=27]
 [ext_resource path="res://Assets/Ninja Frog/run/Run (32x32)_10.png" type="Texture" id=28]
+[ext_resource path="res://Assets/Sound/platform-jump.wav" type="AudioStream" id=29]
 [ext_resource path="res://Assets/Background/bg.png" type="Texture" id=30]
 [ext_resource path="res://Assets/Background/cloud2.png" type="Texture" id=31]
 [ext_resource path="res://Assets/Background/cloud1.png" type="Texture" id=32]
@@ -38,6 +39,9 @@
 [ext_resource path="res://Assets/Ninja Frog/hit/Hit (32x32)_5.png" type="Texture" id=37]
 [ext_resource path="res://Assets/Ninja Frog/hit/Hit (32x32)_1.png" type="Texture" id=38]
 [ext_resource path="res://Assets/Ninja Frog/hit/Hit (32x32)_3.png" type="Texture" id=39]
+[ext_resource path="res://Assets/Sound/platform-game-theme-loop.wav" type="AudioStream" id=40]
+[ext_resource path="res://Main.gd" type="Script" id=41]
+[ext_resource path="res://Enemy/Enemy.tscn" type="PackedScene" id=42]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
@@ -156,10 +160,13 @@ points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 [sub_resource type="ConvexPolygonShape2D" id=39]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
-[sub_resource type="ConvexPolygonShape2D" id=43]
+[sub_resource type="ConvexPolygonShape2D" id=44]
+points = PoolVector2Array( 0, 0, 32, 0, 32, 32, 0, 32 )
+
+[sub_resource type="ConvexPolygonShape2D" id=40]
 points = PoolVector2Array( 16, 15.9622, 0.0062542, 15.9622, 0.0062542, 9.1471, 16, 9.09302 )
 
-[sub_resource type="TileSet" id=40]
+[sub_resource type="TileSet" id=41]
 0/name = "AutoTile"
 0/texture = ExtResource( 1 )
 0/tex_offset = Vector2( 0, 0 )
@@ -177,11 +184,6 @@ points = PoolVector2Array( 16, 15.9622, 0.0062542, 15.9622, 0.0062542, 9.1471, 1
 0/autotile/z_index_map = [  ]
 0/occluder_offset = Vector2( 0, 0 )
 0/navigation_offset = Vector2( 0, 0 )
-0/shape_offset = Vector2( 0, 0 )
-0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-0/shape = SubResource( 1 )
-0/shape_one_way = false
-0/shape_one_way_margin = 1.0
 0/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
@@ -403,10 +405,6 @@ points = PoolVector2Array( 16, 15.9622, 0.0062542, 15.9622, 0.0062542, 9.1471, 1
 1/autotile/z_index_map = [  ]
 1/occluder_offset = Vector2( 0, 0 )
 1/navigation_offset = Vector2( 0, 0 )
-1/shape_offset = Vector2( 0, 0 )
-1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-1/shape_one_way = false
-1/shape_one_way_margin = 0.0
 1/shapes = [  ]
 1/z_index = 0
 2/name = "Terrain (16x16).png 2"
@@ -424,11 +422,6 @@ points = PoolVector2Array( 16, 15.9622, 0.0062542, 15.9622, 0.0062542, 9.1471, 1
 2/autotile/z_index_map = [  ]
 2/occluder_offset = Vector2( 0, 0 )
 2/navigation_offset = Vector2( 0, 0 )
-2/shape_offset = Vector2( 0, 0 )
-2/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-2/shape = SubResource( 35 )
-2/shape_one_way = false
-2/shape_one_way_margin = 1.0
 2/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
@@ -469,10 +462,6 @@ points = PoolVector2Array( 16, 15.9622, 0.0062542, 15.9622, 0.0062542, 9.1471, 1
 3/tile_mode = 0
 3/occluder_offset = Vector2( 0, 0 )
 3/navigation_offset = Vector2( 0, 0 )
-3/shape_offset = Vector2( 0, 0 )
-3/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-3/shape_one_way = false
-3/shape_one_way_margin = 0.0
 3/shapes = [  ]
 3/z_index = 0
 4/name = "fluidBlue_top.png 4"
@@ -483,11 +472,13 @@ points = PoolVector2Array( 16, 15.9622, 0.0062542, 15.9622, 0.0062542, 9.1471, 1
 4/tile_mode = 0
 4/occluder_offset = Vector2( 0, 0 )
 4/navigation_offset = Vector2( 0, 0 )
-4/shape_offset = Vector2( 0, 0 )
-4/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-4/shape_one_way = false
-4/shape_one_way_margin = 0.0
-4/shapes = [  ]
+4/shapes = [ {
+"autotile_coord": Vector2( 0, 0 ),
+"one_way": false,
+"one_way_margin": 1.0,
+"shape": SubResource( 44 ),
+"shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
+} ]
 4/z_index = 0
 5/name = "Idle.png 5"
 5/texture = ExtResource( 25 )
@@ -497,39 +488,24 @@ points = PoolVector2Array( 16, 15.9622, 0.0062542, 15.9622, 0.0062542, 9.1471, 1
 5/tile_mode = 0
 5/occluder_offset = Vector2( 0, 0 )
 5/navigation_offset = Vector2( 0, 0 )
-5/shape_offset = Vector2( 0, 0 )
-5/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-5/shape = SubResource( 43 )
-5/shape_one_way = false
-5/shape_one_way_margin = 1.0
 5/shapes = [ {
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 43 ),
+"shape": SubResource( 40 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 5/z_index = 0
 
-[sub_resource type="CapsuleShape2D" id=41]
+[sub_resource type="CapsuleShape2D" id=42]
 radius = 10.7155
 height = 7.6286
 
-[sub_resource type="SpriteFrames" id=42]
+[sub_resource type="SpriteFrames" id=43]
 animations = [ {
 "frames": [ ExtResource( 14 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 17 ), ExtResource( 6 ), ExtResource( 23 ), ExtResource( 15 ), ExtResource( 7 ), ExtResource( 16 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 22 ) ],
-"loop": true,
-"name": "jump",
-"speed": 3.0
-}, {
-"frames": [ ExtResource( 13 ) ],
-"loop": true,
-"name": "fall",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 9 ), ExtResource( 22 ), ExtResource( 12 ), ExtResource( 21 ), ExtResource( 2 ), ExtResource( 18 ), ExtResource( 28 ), ExtResource( 24 ) ],
@@ -537,13 +513,30 @@ animations = [ {
 "name": "run",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 22 ) ],
+"loop": true,
+"name": "jump",
+"speed": 3.0
+}, {
 "frames": [ ExtResource( 38 ), ExtResource( 34 ), ExtResource( 39 ), ExtResource( 36 ), ExtResource( 37 ), ExtResource( 33 ), ExtResource( 35 ) ],
 "loop": true,
 "name": "hit",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "fall",
+"speed": 5.0
 } ]
 
 [node name="Main" type="Node2D"]
+script = ExtResource( 41 )
+
+[node name="sfx_background" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 40 )
+volume_db = -20.0
+autoplay = true
+mix_target = 1
 
 [node name="cave" type="Sprite" parent="."]
 position = Vector2( 1784, 128 )
@@ -552,7 +545,7 @@ texture = ExtResource( 27 )
 centered = false
 
 [node name="TileMap" type="TileMap" parent="."]
-tile_set = SubResource( 40 )
+tile_set = SubResource( 41 )
 cell_size = Vector2( 16, 16 )
 cell_custom_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
 format = 1
@@ -586,22 +579,23 @@ texture = ExtResource( 32 )
 centered = false
 
 [node name="Player" type="KinematicBody2D" parent="." groups=[
-"Player",
+"Players",
 ]]
-position = Vector2( 288, 136 )
+position = Vector2( 88, 280 )
+collision_layer = 2
 script = ExtResource( 10 )
 __meta__ = {
 "_edit_group_": true
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
-shape = SubResource( 41 )
+shape = SubResource( 42 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Player"]
 position = Vector2( 0, -1.023 )
-frames = SubResource( 42 )
+frames = SubResource( 43 )
 animation = "idle"
-frame = 4
+frame = 6
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -613,6 +607,21 @@ limit_bottom = 522
 smoothing_enabled = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
+
+[node name="sfx_jump" type="AudioStreamPlayer2D" parent="Player"]
+stream = ExtResource( 29 )
+
+[node name="RayCastGroup" type="RayCast2D" parent="Player"]
+
+[node name="RayCastRight" type="RayCast2D" parent="Player/RayCastGroup"]
+position = Vector2( 8, 0 )
+enabled = true
+cast_to = Vector2( 0, 16 )
+
+[node name="RayCastLeft" type="RayCast2D" parent="Player/RayCastGroup"]
+position = Vector2( -8, 0 )
+enabled = true
+cast_to = Vector2( 0, 16 )
 
 [node name="PlatformGroup" type="Node" parent="."]
 
@@ -672,7 +681,7 @@ move_to = Vector2( 0, -88 )
 position = Vector2( 344, 344 )
 
 [node name="Pineapple2" parent="Coin" instance=ExtResource( 26 )]
-position = Vector2( 432, 304 )
+position = Vector2( 440, 384 )
 
 [node name="Pineapple3" parent="Coin" instance=ExtResource( 26 )]
 position = Vector2( 520, 272 )
@@ -730,3 +739,10 @@ position = Vector2( 2352, 400 )
 
 [node name="Pineapple19" parent="Coin" instance=ExtResource( 26 )]
 position = Vector2( 2336, 112 )
+
+[node name="Enemy" parent="." instance=ExtResource( 42 )]
+position = Vector2( 384, 360 )
+
+[node name="Enemy2" parent="." instance=ExtResource( 42 )]
+position = Vector2( 432, 304 )
+[connection signal="finished" from="sfx_background" to="." method="_on_sfx_background_finished"]
