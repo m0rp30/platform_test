@@ -34,3 +34,7 @@ func _physics_process(delta: float) -> void:
 				player.damage()
 				direction = direction * -1
 				raycast_horrizontal.cast_to *= -1
+
+func damage() -> void:
+	#TODO Animazione di morte
+	queue_free()

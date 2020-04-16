@@ -1,15 +1,23 @@
 extends KinematicBody2D
 
+signal update_life()
+signal update_coin()
+
 const FLOOR_NORMAL : = Vector2(0, -1)
+
+var jump_speed : = Global.jump_speed
+var gravity : = Global.gravity
+var life : = Global.life
 
 var speed : = 100.0
 var velocity : = Vector2()
 var target_speed : = 0.0
 var is_jumping : = false
-var life : = 100
+
 
 onready var animated_sprite : = $AnimatedSprite as AnimatedSprite
-onready var rayCast_right : = $RayCastGroup/RayCastRight as RayCast2D
+onready var animation : = $AnimationPlayer as AnimationPlayer
+onready var foot : Node2D = $Foot as Node2D
 
 func _process(_delta) -> void:
 	if velocity.x < 0:
@@ -27,8 +35,9 @@ func _process(_delta) -> void:
 
 func _physics_process(delta: float) -> void:
 	get_inputs()
+	get_enemy_reycast()
 	
-	velocity.y += Global.gravity * delta
+	velocity.y += gravity * delta
 	velocity.x = lerp(velocity.x, target_speed, .1)
 	if abs(velocity.x) < 1:
 		velocity.x = 0
@@ -41,19 +50,37 @@ func _physics_process(delta: float) -> void:
 	
 	if !is_on_floor() && self.position.y > 512:
 		life = -1
+		emit_signal("update_life", life)
 	
 	if life <= 0:
+		velocity.y = jump_speed
+		animation.play("deat")
 		print("Sei morto")
 	
 func get_inputs() -> void:
 	#if Input.is_action_pressed("ui_up") && is_on_floor():
 	if Input.is_action_just_pressed("ui_up") && is_on_floor():
 		$sfx_jump.play()
-		velocity.y = Global.jump_speed
+		velocity.y = jump_speed
 		is_jumping = true
 	
 	target_speed = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")) * speed
 
+func get_enemy_reycast() -> void:
+	for ray in foot.get_children():
+		var collider = ray.get_collider()
+		if collider && collider.is_in_group("Enemies"):
+			velocity.y = jump_speed * .5
+			print(velocity.y)
+			collider.damage()
+
 func damage() -> void:
+	if animation.is_playing():
+		return
+	
 	life -= 1
-	print(life)
+	animation.play("damage")
+	emit_signal("update_life", life)
+
+func get_coin():
+	emit_signal("update_coin")
