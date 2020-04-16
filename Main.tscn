@@ -707,7 +707,7 @@ shape = SubResource( 42 )
 position = Vector2( 0, -1.023 )
 frames = SubResource( 43 )
 animation = "hit"
-frame = 4
+frame = 6
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]

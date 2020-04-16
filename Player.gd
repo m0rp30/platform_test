@@ -55,7 +55,7 @@ func _physics_process(delta: float) -> void:
 	if life <= 0:
 		velocity.y = jump_speed
 		animation.play("deat")
-		print("Sei morto")
+		SceneManager.goto_scene("res://MainMenu/MainMenu.tscn")
 	
 func get_inputs() -> void:
 	#if Input.is_action_pressed("ui_up") && is_on_floor():
