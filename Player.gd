@@ -1,13 +1,12 @@
 extends KinematicBody2D
 
-class_name Player
-
 const FLOOR_NORMAL : = Vector2(0, -1)
 
 var speed : = 100.0
 var velocity : = Vector2()
 var target_speed : = 0.0
 var is_jumping : = false
+var life : = 100
 
 onready var animated_sprite : = $AnimatedSprite as AnimatedSprite
 onready var rayCast_right : = $RayCastGroup/RayCastRight as RayCast2D
@@ -40,6 +39,12 @@ func _physics_process(delta: float) -> void:
 	if is_on_floor():
 		is_jumping = false
 	
+	if !is_on_floor() && self.position.y > 512:
+		life = -1
+	
+	if life <= 0:
+		print("Sei morto")
+	
 func get_inputs() -> void:
 	#if Input.is_action_pressed("ui_up") && is_on_floor():
 	if Input.is_action_just_pressed("ui_up") && is_on_floor():
@@ -48,3 +53,7 @@ func get_inputs() -> void:
 		is_jumping = true
 	
 	target_speed = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")) * speed
+
+func damage() -> void:
+	life -= 1
+	print(life)

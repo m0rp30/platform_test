@@ -43,7 +43,7 @@ shape = SubResource( 1 )
 position = Vector2( -0.685974, -0.68598 )
 frames = SubResource( 2 )
 animation = "run"
-frame = 4
+frame = 7
 playing = true
 
 [node name="RayCastVer" type="RayCast2D" parent="."]

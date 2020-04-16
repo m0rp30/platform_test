@@ -25,9 +25,12 @@ func _physics_process(delta: float) -> void:
 	if raycast_horrizontal.is_colliding() || !raycast_vertical.is_colliding():
 		direction = direction * -1
 		raycast_vertical.position = raycast_vertical.position * -1
-		raycast_horrizontal.scale.x = raycast_horrizontal.scale.x * -1
+		raycast_horrizontal.cast_to *= -1
 	
 	if get_slide_count():
 		for i in range(get_slide_count()):
 			if get_slide_collision(i).get_collider().is_in_group("Players"):
-				print("PLAYER")
+				var player = get_slide_collision(i).get_collider()
+				player.damage()
+				direction = direction * -1
+				raycast_horrizontal.cast_to *= -1
