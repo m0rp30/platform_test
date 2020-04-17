@@ -15,6 +15,7 @@ func _on_Player_update_life(life : int) -> void:
 	tween_life.start()
 
 func _on_Player_update_coin():
+	print("preso coin")
 	label_coin.text = str(int(label_coin.text)+1)
 	if int(label_coin.text)>0:
 		label_coin.visible = true
