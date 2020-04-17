@@ -1,8 +1,8 @@
 extends CanvasLayer
 
-onready var progress_life : ProgressBar = $HBoxContainer/VBoxContainer/ProgressBar as ProgressBar
-onready var tween_life : Tween = $HBoxContainer/VBoxContainer/ProgressBar/Tween as Tween
-onready var label_coin : Label = $HBoxContainer/HBoxContainer/Label as Label
+onready var progress_life : ProgressBar = $HBoxContainerLeft/VBoxLife/ProgressBar as ProgressBar
+onready var tween_life : Tween = $HBoxContainerLeft/VBoxLife/ProgressBar/Tween as Tween
+onready var label_coin : Label = $HBoxContainerLeft/HBoxCoin/Label as Label
 
 func _ready():
 	progress_life.value = 10
@@ -15,8 +15,7 @@ func _on_Player_update_life(life : int) -> void:
 	tween_life.start()
 
 func _on_Player_update_coin():
-	print("preso coin")
 	label_coin.text = str(int(label_coin.text)+1)
 	if int(label_coin.text)>0:
 		label_coin.visible = true
-		$HBoxContainer/HBoxContainer/TextureRect.visible = true
+		$HBoxContainerLeft/HBoxCoin/TextureRect.visible = true

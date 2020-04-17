@@ -14,6 +14,7 @@ var velocity : = Vector2()
 var target_speed : = 0.0
 var is_jumping : = false
 
+var timer = 0
 
 onready var animated_sprite : = $AnimatedSprite as AnimatedSprite
 onready var animation : = $AnimationPlayer as AnimationPlayer
@@ -55,11 +56,13 @@ func _physics_process(delta: float) -> void:
 	if life <= 0:
 		velocity.y = jump_speed
 		animation.play("deat")
-		SceneManager.goto_scene("res://MainMenu/MainMenu.tscn")
+		timer += 1 * delta
+		if timer > 1:
+			get_tree().change_scene("res://TitleScreen.tscn")
 	
 func get_inputs() -> void:
 	#if Input.is_action_pressed("ui_up") && is_on_floor():
-	if Input.is_action_just_pressed("ui_up") && is_on_floor():
+	if (Input.is_action_just_pressed("ui_accept") || Input.is_action_just_pressed("ui_up"))  && is_on_floor():
 		$sfx_jump.play()
 		velocity.y = jump_speed
 		is_jumping = true
@@ -71,13 +74,11 @@ func get_enemy_reycast() -> void:
 		var collider = ray.get_collider()
 		if collider && collider.is_in_group("Enemies"):
 			velocity.y = jump_speed * .5
-			print(velocity.y)
 			collider.damage()
 
 func damage() -> void:
 	if animation.is_playing():
 		return
-	
 	life -= 1
 	animation.play("damage")
 	emit_signal("update_life", life)

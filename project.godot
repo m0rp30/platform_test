@@ -16,13 +16,13 @@ _global_script_class_icons={
 [application]
 
 config/name="Platform_test"
-run/main_scene="res://MainMenu/MainMenu.tscn"
+run/main_scene="res://TitleScreen.tscn"
+boot_splash/image="res://Assets/Background/bg_TitleMenu.png"
 config/icon="res://icon.png"
 
 [autoload]
 
 Global="*res://Globals/Global.gd"
-SceneManager="*res://Globals/SceneManager/SceneManager.gd"
 
 [display]
 
