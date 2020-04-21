@@ -1,7 +1,7 @@
 #TODO
 
- * ~~Nemici
- * ~~Monete
+ * ~~Nemici~~
+ * ~~Monete~~
  * Aggiungere alla UI pulsante per pausa, stop/start musica sottofondo
  * Potenziamenti speciali ( sparo )
  * Portali per fine schema o cambio livello
