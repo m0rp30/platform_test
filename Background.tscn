@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Background/cloud1.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Background/bg.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Background/cloud2.png" type="Texture" id=3]
+
+[node name="Background" type="Node2D"]
+
+[node name="Cielo_e_nuvole" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="Cielo_e_nuvole"]
+motion_mirroring = Vector2( 1024, 0 )
+
+[node name="Cielo" type="Sprite" parent="Cielo_e_nuvole/ParallaxLayer5"]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Cielo_e_nuvole"]
+motion_scale = Vector2( 0.4, 1 )
+motion_mirroring = Vector2( 1024, 0 )
+
+[node name="Fog_back" type="Sprite" parent="Cielo_e_nuvole/ParallaxLayer"]
+texture = ExtResource( 3 )
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="Cielo_e_nuvole"]
+motion_scale = Vector2( 0.8, 1 )
+motion_mirroring = Vector2( 1024, 0 )
+
+[node name="Fog_front" type="Sprite" parent="Cielo_e_nuvole/ParallaxLayer2"]
+texture = ExtResource( 1 )
+centered = false

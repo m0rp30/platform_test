@@ -12,3 +12,8 @@ func _ready():
 	add_child(player)
 	player.add_to_group("streams")
 	player.play()
+	player.connect("finished", self, "on_finished")
+	#player.emit_signal("finished")
+
+func on_finished():
+	player.play()

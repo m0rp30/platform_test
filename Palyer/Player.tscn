@@ -30,20 +30,15 @@
 [ext_resource path="res://Player.gd" type="Script" id=28]
 [ext_resource path="res://Assets/Sound/platform-jump.wav" type="AudioStream" id=29]
 
-[sub_resource type="CapsuleShape2D" id=42]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 10.7155
 height = 7.6286
 
-[sub_resource type="SpriteFrames" id=43]
+[sub_resource type="SpriteFrames" id=2]
 animations = [ {
 "frames": [ ExtResource( 5 ), ExtResource( 1 ), ExtResource( 17 ), ExtResource( 2 ), ExtResource( 9 ), ExtResource( 13 ), ExtResource( 10 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 20 ) ],
 "loop": true,
 "name": "idle",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 24 ), ExtResource( 19 ), ExtResource( 26 ), ExtResource( 23 ), ExtResource( 27 ), ExtResource( 16 ), ExtResource( 25 ) ],
-"loop": true,
-"name": "hit",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 21 ), ExtResource( 8 ), ExtResource( 22 ), ExtResource( 14 ), ExtResource( 7 ), ExtResource( 18 ), ExtResource( 15 ), ExtResource( 11 ) ],
@@ -60,9 +55,14 @@ animations = [ {
 "loop": true,
 "name": "fall",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 24 ), ExtResource( 19 ), ExtResource( 26 ), ExtResource( 23 ), ExtResource( 27 ), ExtResource( 16 ), ExtResource( 25 ) ],
+"loop": true,
+"name": "hit",
+"speed": 5.0
 } ]
 
-[sub_resource type="Animation" id=44]
+[sub_resource type="Animation" id=3]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:modulate")
@@ -77,7 +77,7 @@ tracks/0/keys = {
 "values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=45]
+[sub_resource type="Animation" id=4]
 resource_name = "deat"
 tracks/0/type = "value"
 tracks/0/path = NodePath("AnimatedSprite:scale")
@@ -115,20 +115,20 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 42 )
+shape = SubResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 position = Vector2( 0, -1.023 )
-frames = SubResource( 43 )
+frames = SubResource( 2 )
 animation = "hit"
-frame = 5
 playing = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 0.5, 0.5 )
 limit_left = 0
 limit_top = 0
-limit_right = 2400
+limit_right = 2880
 limit_bottom = 522
 smoothing_enabled = true
 editor_draw_limits = true
@@ -138,8 +138,8 @@ editor_draw_drag_margin = true
 stream = ExtResource( 29 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/damage = SubResource( 44 )
-anims/deat = SubResource( 45 )
+anims/damage = SubResource( 3 )
+anims/deat = SubResource( 4 )
 
 [node name="Foot" type="Node2D" parent="."]
 

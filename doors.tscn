@@ -12,6 +12,7 @@ script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
+next_level = "\"res://Lev2.tscn\""
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
