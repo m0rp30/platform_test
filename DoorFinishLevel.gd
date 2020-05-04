@@ -8,4 +8,4 @@ func _physics_process(delta):
 		if body.is_in_group("Players"):
 			timer += 1 * delta
 			if timer > 1:
-				get_tree().change_scene("res://TitleScreen.tscn")
+				get_tree().change_scene("res://Lev2.tscn")
