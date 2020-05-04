@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Traps/Spikes/Idle.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 7.55785, 2.74893 )
+
+[node name="Spine" type="RigidBody2D" groups=[
+"Trappole",
+]]
+position = Vector2( 2056, 333.229 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 0.365488, -5.24266 )
+texture = ExtResource( 1 )

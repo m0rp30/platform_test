@@ -75,6 +75,9 @@ func get_enemy_reycast() -> void:
 		if collider && collider.is_in_group("Enemies"):
 			velocity.y = jump_speed * .5
 			collider.damage()
+		elif collider && collider.is_in_group("Trappole"):
+			velocity.y = jump_speed * .5
+			life = 0
 
 func damage() -> void:
 	if animation.is_playing():
