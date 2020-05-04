@@ -29,7 +29,6 @@ position = Vector2( 2382.23, 113.854 )
 [node name="sfx_background" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 7 )
 volume_db = -20.0
-autoplay = true
 mix_target = 1
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -226,4 +225,5 @@ shape = SubResource( 1 )
 [node name="Sprite" type="Sprite" parent="Trappole/Spine3"]
 position = Vector2( 0.365488, -5.24266 )
 texture = ExtResource( 16 )
-[connection signal="finished" from="sfx_background" to="." method="_on_sfx_background_finished"]
+[connection signal="update_coin" from="Player" to="UI" method="_on_Player_update_coin"]
+[connection signal="update_life" from="Player" to="UI" method="_on_Player_update_life"]
