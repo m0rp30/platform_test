@@ -12,9 +12,3 @@ func _ready():
 	add_child(player)
 	player.add_to_group("streams")
 	player.play()
-	
-	player.emit_signal("finished")
-
-func _on_player_finished():
-	#_on_sfx_background_finished():
-	player.play()
