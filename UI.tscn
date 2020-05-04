@@ -58,11 +58,10 @@ percent_visible = false
 
 [node name="HBoxCoin" type="HBoxContainer" parent="HBoxContainerLeft"]
 margin_left = 116.0
-margin_right = 116.0
+margin_right = 132.0
 margin_bottom = 20.0
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainerLeft/HBoxCoin"]
-visible = false
 margin_right = 16.0
 margin_bottom = 20.0
 texture = SubResource( 3 )
