@@ -10,8 +10,10 @@ export var speed = 3.0
 var cell_size : = Global.cell_size
 var follow = Vector2.ZERO
 
+
 func _ready():
 	_init_tween()
+
 
 func _init_tween():
 	var duration = move_to.length() / float(speed * cell_size)
@@ -23,6 +25,7 @@ func _init_tween():
 	duration + idle_duration * 2)
 # warning-ignore:return_value_discarded
 	tween.start()
+
 
 func _physics_process(_delta) -> void:
 	kinematic.position = kinematic.position.linear_interpolate(follow, 0.075)

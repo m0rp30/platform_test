@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Control.gd" type="Script" id=1]
+[ext_resource path="res://Assets/resume_focus.png" type="Texture" id=2]
+[ext_resource path="res://Assets/resume.png" type="Texture" id=3]
+[ext_resource path="res://Assets/exit.png" type="Texture" id=4]
+[ext_resource path="res://Assets/exit_focus.png" type="Texture" id=5]
+
+[node name="PauseScreen" type="CanvasLayer"]
+layer = 100
+
+[node name="Control" type="Control" parent="."]
+pause_mode = 2
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 1, 1, 1, 0.45098 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CenterContainer" type="CenterContainer" parent="Control/MarginContainer"]
+margin_right = 1024.0
+margin_bottom = 512.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/CenterContainer"]
+margin_left = 384.0
+margin_top = 222.0
+margin_right = 640.0
+margin_bottom = 290.0
+
+[node name="TextureButtonResume" type="TextureButton" parent="Control/MarginContainer/CenterContainer/VBoxContainer"]
+margin_right = 256.0
+margin_bottom = 32.0
+texture_normal = ExtResource( 3 )
+texture_focused = ExtResource( 2 )
+
+[node name="TextureButtonExit" type="TextureButton" parent="Control/MarginContainer/CenterContainer/VBoxContainer"]
+margin_top = 36.0
+margin_right = 256.0
+margin_bottom = 68.0
+texture_normal = ExtResource( 4 )
+texture_focused = ExtResource( 5 )
+[connection signal="pressed" from="Control/MarginContainer/CenterContainer/VBoxContainer/TextureButtonResume" to="Control" method="_on_TextureButtonResume_pressed"]
+[connection signal="pressed" from="Control/MarginContainer/CenterContainer/VBoxContainer/TextureButtonExit" to="Control" method="_on_TextureButtonExit_pressed"]

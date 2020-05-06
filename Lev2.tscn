@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://tile_set.tres" type="TileSet" id=1]
 [ext_resource path="res://Platform/Platform.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Palyer/Player.tscn" type="PackedScene" id=5]
 [ext_resource path="res://doors.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Background.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Pause.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Assets/grotta.png" type="Texture" id=10]
 [ext_resource path="res://UI.tscn" type="PackedScene" id=11]
 
@@ -193,5 +194,7 @@ limit_left = 0
 limit_top = 0
 limit_right = 2880
 limit_bottom = 512
+
+[node name="Pause" parent="." instance=ExtResource( 8 )]
 [connection signal="update_coin" from="Player" to="UI" method="_on_Player_update_coin"]
 [connection signal="update_life" from="Player" to="UI" method="_on_Player_update_life"]

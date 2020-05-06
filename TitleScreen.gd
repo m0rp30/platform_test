@@ -3,6 +3,7 @@ extends Control
 func _ready():
 	$MarginContainer/VBoxContainer/VBoxContainer/tb_start_game.grab_focus()
 
+
 func _physics_process(delta):
 	if $MarginContainer/VBoxContainer/VBoxContainer/tb_start_game.is_hovered() == true:
 		$MarginContainer/VBoxContainer/VBoxContainer/tb_start_game.grab_focus()

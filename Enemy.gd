@@ -10,6 +10,7 @@ onready var animated_sprite : = $AnimatedSprite as AnimatedSprite
 onready var raycast_vertical : = $RayCastVer as RayCast2D
 onready var raycast_horrizontal : = $RayCastHor as RayCast2D
 
+
 func _physics_process(delta: float) -> void:
 	velocity.x = speed * direction
 	
@@ -34,6 +35,7 @@ func _physics_process(delta: float) -> void:
 				player.damage()
 				direction = direction * -1
 				raycast_horrizontal.cast_to *= -1
+
 
 func damage() -> void:
 	#TODO Animazione di morte

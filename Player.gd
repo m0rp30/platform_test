@@ -20,6 +20,7 @@ onready var animated_sprite : = $AnimatedSprite as AnimatedSprite
 onready var animation : = $AnimationPlayer as AnimationPlayer
 onready var foot : Node2D = $Foot as Node2D
 
+
 func _process(_delta) -> void:
 	if velocity.x < 0:
 		animated_sprite.flip_h = true
@@ -33,6 +34,7 @@ func _process(_delta) -> void:
 	
 	if !is_on_floor():
 		animated_sprite.play("jump")
+
 
 func _physics_process(delta: float) -> void:
 	get_inputs()
@@ -59,7 +61,8 @@ func _physics_process(delta: float) -> void:
 		timer += 1 * delta
 		if timer > 1:
 			get_tree().change_scene("res://TitleScreen.tscn")
-	
+
+
 func get_inputs() -> void:
 	#if Input.is_action_pressed("ui_up") && is_on_floor():
 	if (Input.is_action_just_pressed("ui_accept") || Input.is_action_just_pressed("ui_up"))  && is_on_floor():
@@ -68,6 +71,7 @@ func get_inputs() -> void:
 		is_jumping = true
 	
 	target_speed = (Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")) * speed
+
 
 func get_enemy_reycast() -> void:
 	for ray in foot.get_children():
@@ -79,12 +83,14 @@ func get_enemy_reycast() -> void:
 			velocity.y = jump_speed * .5
 			life = 0
 
+
 func damage() -> void:
 	if animation.is_playing():
 		return
 	life -= 1
 	animation.play("damage")
 	emit_signal("update_life", life)
+
 
 func get_coin():
 	emit_signal("update_coin")
