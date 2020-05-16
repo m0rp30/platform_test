@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://tile_set.tres" type="TileSet" id=1]
 [ext_resource path="res://Platform/Platform.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Palyer/Player.tscn" type="PackedScene" id=3]
+[ext_resource path="res://doors.tscn" type="PackedScene" id=4]
 [ext_resource path="res://coin/Coin.tscn" type="PackedScene" id=5]
 
 [node name="Node2D" type="Node2D"]
@@ -99,3 +100,7 @@ position = Vector2( 211.626, 467.47 )
 
 [node name="Coin2" parent="Coins" instance=ExtResource( 5 )]
 position = Vector2( 1236.83, 474.223 )
+
+[node name="DoorFinishLevel" parent="." instance=ExtResource( 4 )]
+position = Vector2( 547.034, 467.726 )
+next_level = "res://TitleScreen.tsc"

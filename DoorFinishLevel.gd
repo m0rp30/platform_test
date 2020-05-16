@@ -1,11 +1,9 @@
 extends Area2D
 
-export var next_level = ""
+export(String, FILE, "*.tscn") var next_level
 
 
-func _physics_process(delta):
-	var bodies = get_overlapping_bodies()
-	for body in bodies:
-		if body.is_in_group("Players"):
-			print("Contatto!!!")
-			get_tree().change_scene(next_level)
+func _on_DoorFinishLevel_body_entered(body):
+	if body.is_in_group("Players"):
+		if get_tree().change_scene(next_level):
+			print("ERROR: Impossible to change scene in ", next_level)
